@@ -26,17 +26,12 @@ const theme = createTheme({
   },
 });
 
-// Protected route wrapper
-const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useAuth();
-  if (loading) return null;
-  return user ? children : <Navigate to="/login" replace />;
-};
-
 // Public route — redirect to home if already logged in
 const PublicRoute = ({ children }) => {
   const { user, loading } = useAuth();
+
   if (loading) return null;
+
   return !user ? children : <Navigate to="/" replace />;
 };
 
@@ -46,6 +41,7 @@ function AppRoutes() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+
         <Route
           path="/login"
           element={
@@ -54,6 +50,7 @@ function AppRoutes() {
             </PublicRoute>
           }
         />
+
         <Route
           path="/signup"
           element={
@@ -62,6 +59,7 @@ function AppRoutes() {
             </PublicRoute>
           }
         />
+
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </>
