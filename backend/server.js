@@ -12,16 +12,19 @@ const app = express();
 // CORS — allow frontend origin (set FRONTEND_URL in production env)
 const allowedOrigins = [
   "http://localhost:3000",
-  process.env.FRONTEND_URL, // e.g. https://your-app.vercel.app
-].filter(Boolean);
+  "https://mini-social-post-application-seven.vercel.app",
+];
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (mobile apps, curl, Postman)
+    origin: function (origin, callback) {
       if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) return callback(null, true);
-      callback(new Error(`CORS blocked: ${origin}`));
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(null, false);
     },
     credentials: true,
   })
