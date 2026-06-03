@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import {
   Card, CardContent, Box, TextField, Button, Avatar,
-  Typography, IconButton, Chip, CircularProgress, Alert
+  IconButton, Chip, CircularProgress, Alert
 } from "@mui/material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import CloseIcon from "@mui/icons-material/Close";
